@@ -18,5 +18,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('contratos', ['as' => '.contratos', 'uses' => 'App\Http\Controllers\ContratoController@index']);
-	
+Route::get('contratos', ['as' => 'contratos', 'uses' => 'App\Http\Controllers\ContratoController@index']);
+Route::get('participantes', ['as' => 'participantes', 'uses' => 'App\Http\Controllers\ParticipanteController@index']);
+		

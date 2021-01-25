@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ParticipanteController extends Controller
 {
@@ -13,7 +14,11 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        //
+        
+        $participantes = DB::table('participantes')->join('contratos','participantes.contrato_id','=','contratos.id')->select('participantes.primer_nombre','participantes.primer_apellido','contratos.nombre')->get();
+
+        return view('participantes', compact('participantes'));
+
     }
 
     /**

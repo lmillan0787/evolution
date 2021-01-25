@@ -26,10 +26,12 @@ class CreateParticipantesTable extends Migration
         });
  Schema::create('participantes', function (Blueprint $table) {
             $table->id();
-            $table->string('cedula', 10)->unique();
+            // $table->string('cedula', 10)->unique();
             $table->string('primer_nombre', 20);
             $table->string('primer_apellido', 20);
-            $table->string('id_contrato',10);
+            // $table->string('contrato_id',10);
+            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('id_registro',10);
             $table->string('upline_id', 10);
             $table->date('fecha_registro');
             $table->foreignId('bloque_id')->constrained('bloques');

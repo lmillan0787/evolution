@@ -69,5 +69,38 @@ class DatabaseSeeder extends Seeder
          foreach ($datos as $key) {
             DB::table('bloques')->insert($key);
         }
+
+          $datos = [
+        	[
+
+        	'primer_nombre' => 'Ivan',
+			'primer_apellido' => 'Alvarez',
+			'contrato_id' => '1',
+			'id_registro' => '2021',
+			'upline_id' => '0',
+			'fecha_registro' => '2020/06/05',
+			'bloque_id' => '1',
+        	'created_at' => now()
+
+        	],
+        	[
+
+        	'primer_nombre' => 'Gladiangel',
+			'primer_apellido' => 'Meneses',
+			'contrato_id' => '1',
+			'id_registro' => '2022',
+			'upline_id' => '1',
+			'fecha_registro' => '2020/11/2',
+			'bloque_id' => '1',
+        	'created_at' => now()
+
+        	]
+        	
+
+        ];
+
+         foreach ($datos as $key) {
+            DB::table('participantes')->insert($key);
+        }
     }
 }
