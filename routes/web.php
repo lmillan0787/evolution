@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('contratos', ['as' => '.contratos', 'uses' => 'App\Http\Controllers\ContratoController@index']);
+	
