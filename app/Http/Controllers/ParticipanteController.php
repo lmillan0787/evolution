@@ -32,7 +32,11 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-       return view('participantes.create');
+        $participantes = $this->consultaParticipantesForsage();
+
+         //dd($participantes);
+
+       return view('participantes.create', compact('participantes'));
     }
 
     /**
@@ -44,8 +48,6 @@ class ParticipanteController extends Controller
     public function store(Request $request)
     {
         $data = [ 
-        'primer_nombre' => $request['primer_nombre'],
-         'primer_apellido' => $request['primer_apellido'],
         'contrato_id' => $request['contrato_id'],
         'id_registro' => $request['id_registro'],
         'id_registro' => $request['id_registro'],
@@ -116,7 +118,7 @@ class ParticipanteController extends Controller
 
 $participantes = DB::table('participantes_forsage as pf')
 ->join('personas','pf.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','pf.id_registro','pf.upline_id')->get();
+->select('personas.primer_nombre','personas.primer_apellido','pf.id_registro','pf.upline_id','personas.id as id_per')->get();
 
 return $participantes;
 

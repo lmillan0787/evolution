@@ -2,7 +2,11 @@
 @section('content')
 <form action="{{ route('participantes/store') }}" method="post">
 	@csrf
-	
+	<select name="persona" class="select2" id="">
+		@foreach ($participantes as $participa)
+		<option value="{{$participa->persona_id}}">{{$participa->primer_nombre}} {{$participa->primer_apellido}}</option>
+		@endforeach
+	</select>
  <label for="">Primer Nombre</label>
 <input type="text" name="primer_nombre"><br>
 
@@ -34,5 +38,10 @@
 
 
 </form>
+<script>
+$(document).ready(function() {
+    $('.select2').select2();
+});
+</script>
 @endsection
 
