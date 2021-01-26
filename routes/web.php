@@ -14,10 +14,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+Route::post('participantes/store', ['as' => 'participantes/store', 'uses' => 'App\Http\Controllers\ParticipanteController@store']);
 
 
 Route::get('contratos', ['as' => 'contratos', 'uses' => 'App\Http\Controllers\ContratoController@index']);
 Route::get('participantes', ['as' => 'participantes', 'uses' => 'App\Http\Controllers\ParticipanteController@index']);
+Route::get('participantes/create', ['as' => 'participantes/create', 'uses' => 'App\Http\Controllers\ParticipanteController@create']);
+Route::post('participantes/store', ['as' => 'participantes/store', 'uses' => 'App\Http\Controllers\ParticipanteController@store']);
 		

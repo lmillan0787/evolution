@@ -24,13 +24,40 @@ class CreateParticipantesTable extends Migration
             $table->string('nombre',30);
             $table->timestamps();
         });
- Schema::create('participantes', function (Blueprint $table) {
+        Schema::create('personas', function (Blueprint $table) {
             $table->id();
-            // $table->string('cedula', 10)->unique();
             $table->string('primer_nombre', 20);
             $table->string('primer_apellido', 20);
-            // $table->string('contrato_id',10);
-            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('pais', 30);
+            $table->timestamps();
+        });
+ Schema::create('participantes_forsage', function (Blueprint $table) {
+            $table->id();
+           
+            $table->string('persona_id',10)->constrained('persona');
+            // $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('id_registro',10);
+            $table->string('upline_id', 10);
+            $table->date('fecha_registro');
+            $table->foreignId('bloque_id')->constrained('bloques');
+            $table->timestamps();
+        });
+ Schema::create('participantes_incomatrix', function (Blueprint $table) {
+            $table->id();
+           
+            $table->string('persona_id',10)->constrained('persona');
+            // $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('id_registro',10);
+            $table->string('upline_id', 10);
+            $table->date('fecha_registro');
+            $table->foreignId('bloque_id')->constrained('bloques');
+            $table->timestamps();
+        });
+ Schema::create('participantes_trust_investing', function (Blueprint $table) {
+            $table->id();
+           
+            $table->string('persona_id',10)->constrained('persona');
+            // $table->foreignId('contrato_id')->constrained('contratos');
             $table->string('id_registro',10);
             $table->string('upline_id', 10);
             $table->date('fecha_registro');
@@ -46,7 +73,9 @@ class CreateParticipantesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('participantes');
+        Schema::dropIfExists('participantes_forsage');
+        Schema::dropIfExists('participantes_incomatrix');
+        Schema::dropIfExists('participantes_trust_investing');
         Schema::dropIfExists('bloques');
         Schema::dropIfExists('contratos');
     }

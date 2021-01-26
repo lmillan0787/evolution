@@ -16,7 +16,7 @@ class ContratoController extends Controller
     {
         $contratos = DB::table('contratos')->select('nombre')->get();
 
-        return view('contratos', compact('contratos'));
+        return view('contratos.index', compact('contratos'));
 
     }
 

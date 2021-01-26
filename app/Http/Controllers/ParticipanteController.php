@@ -14,10 +14,14 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
-        
-        $participantes = DB::table('participantes')->join('contratos','participantes.contrato_id','=','contratos.id')->select('participantes.primer_nombre','participantes.primer_apellido','contratos.nombre')->get();
 
-        return view('participantes', compact('participantes'));
+        $participantes = $this->consultaParticipantesForsage();
+        //dd($participantes);
+         $uplines = $this->consultarUpline();
+         //dd($uplines);
+        
+          return view('participantes.index', compact('participantes'));
+
 
     }
 
@@ -28,7 +32,7 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-        //
+       return view('participantes.create');
     }
 
     /**
@@ -39,7 +43,26 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = [ 
+        'primer_nombre' => $request['primer_nombre'],
+         'primer_apellido' => $request['primer_apellido'],
+        'contrato_id' => $request['contrato_id'],
+        'id_registro' => $request['id_registro'],
+        'id_registro' => $request['id_registro'],
+        'upline_id' => $request['upline_id'],
+        'fecha_registro' => $request['fecha_registro'],
+        'bloque_id' => $request['bloque_id'],
+
+    ];
+    //dd($data);
+
+    DB::table('participantes')->insert($data);
+
+    $participantes = $this->consultaParticipantesForsage();
+    // $uplines = $this->consultarUpline();
+
+    return view('participantes.index', compact('participantes'));
+
     }
 
     /**
@@ -86,4 +109,18 @@ class ParticipanteController extends Controller
     {
         //
     }
+
+
+    public function consultaParticipantesForsage(){
+
+
+$participantes = DB::table('participantes_forsage as pf')->join('personas','pf.persona_id','=','personas.id')->select('personas.primer_nombre','personas.primer_apellido','pf.id_registro','pf.upline_id')->get();
+
+return $participantes;
+
+      
+
+    }
+
+
 }
