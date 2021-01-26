@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 
-class ParticipanteController extends Controller
+class PersonaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,15 +14,9 @@ class ParticipanteController extends Controller
      */
     public function index()
     {
+        $personas = $this->consultaPersonas();
 
-        $participantes = $this->consultaParticipantesForsage();
-        //dd($participantes);
-         // $uplines = $this->consultarUpline();
-         //dd($uplines);
-        
-          return view('participantes.index', compact('participantes'));
-
-
+        return view('personas.index',compact('personas'));
     }
 
     /**
@@ -32,7 +26,7 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
-       return view('participantes.create');
+        return view('personas.create');
     }
 
     /**
@@ -43,26 +37,21 @@ class ParticipanteController extends Controller
      */
     public function store(Request $request)
     {
-        $data = [ 
+         $data = [ 
         'primer_nombre' => $request['primer_nombre'],
          'primer_apellido' => $request['primer_apellido'],
-        'contrato_id' => $request['contrato_id'],
-        'id_registro' => $request['id_registro'],
-        'id_registro' => $request['id_registro'],
-        'upline_id' => $request['upline_id'],
-        'fecha_registro' => $request['fecha_registro'],
-        'bloque_id' => $request['bloque_id'],
+        'pais' => $request['pais'],
+        
 
     ];
     //dd($data);
 
-    DB::table('participantes')->insert($data);
+    DB::table('personas')->insert($data);
 
-    $participantes = $this->consultaParticipantesForsage();
+    $personas = $this->consultaPersonas();
     // $uplines = $this->consultarUpline();
 
-    return view('participantes.index', compact('participantes'));
-
+    return view('personas.index', compact('personas'));
     }
 
     /**
@@ -110,19 +99,11 @@ class ParticipanteController extends Controller
         //
     }
 
+    public function consultaPersonas(){
 
-    public function consultaParticipantesForsage(){
 
+        $personas = DB::table('personas')->get();
 
-$participantes = DB::table('participantes_forsage as pf')
-->join('personas','pf.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','pf.id_registro','pf.upline_id')->get();
-
-return $participantes;
-
-      
-
+        return $personas;
     }
-
-
 }

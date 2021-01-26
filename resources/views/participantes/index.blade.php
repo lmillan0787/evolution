@@ -1,10 +1,15 @@
-{{-- @extends('layout.header')
-@extends('layout.footer') --}}
-	<table class="default">
+@extends('layout.master')
+@section('content')
+	<div class="row">
+		<div class="one column">
+			
+		</div>
+
+<table class="u-full-width">
 	<thead>
 		<tr>
 		<th>Id Contrato</th>
-		<th>Nombre Contrato</th>
+		<!-- <th>Nombre Contrato</th> -->
 		<th>Nombre</th>
 		<th>Apellido</th>
 		<th>Upline</th>
@@ -14,18 +19,20 @@
 		@foreach ($participantes as $participante)
 		<tr>
 		<td>{{$participante->id_registro}}</td>
-		<td>{{$participante->nombre}}</td>
 		<td>{{$participante->primer_nombre}}</td>
 		<td>{{$participante->primer_apellido}}</td>
+		<td>{{$participante->upline_id}}</td>
 		@endforeach
-		@foreach ($uplines as $upline)
-		<td>{{ $upline->nombre }} {{ $upline->primer_apellido }} </td>
-
-		@endforeach
+		
 		</tr>
 		
 	</tbody>
 
 </table>
+
+
+	</div>
+	
+@endsection
 
 

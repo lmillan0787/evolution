@@ -34,7 +34,7 @@ class CreateParticipantesTable extends Migration
  Schema::create('participantes_forsage', function (Blueprint $table) {
             $table->id();
            
-            $table->string('persona_id',10)->constrained('persona');
+            $table->integer('persona_id')->constrained('persona');
             // $table->foreignId('contrato_id')->constrained('contratos');
             $table->string('id_registro',10);
             $table->string('upline_id', 10);
@@ -45,10 +45,10 @@ class CreateParticipantesTable extends Migration
  Schema::create('participantes_incomatrix', function (Blueprint $table) {
             $table->id();
            
-            $table->string('persona_id',10)->constrained('persona');
+            $table->integer('persona_id')->constrained('persona');
             // $table->foreignId('contrato_id')->constrained('contratos');
             $table->string('id_registro',10);
-            $table->string('upline_id', 10);
+            $table->integer('upline_id');
             $table->date('fecha_registro');
             $table->foreignId('bloque_id')->constrained('bloques');
             $table->timestamps();
@@ -76,6 +76,7 @@ class CreateParticipantesTable extends Migration
         Schema::dropIfExists('participantes_forsage');
         Schema::dropIfExists('participantes_incomatrix');
         Schema::dropIfExists('participantes_trust_investing');
+        Schema::dropIfExists('personas');
         Schema::dropIfExists('bloques');
         Schema::dropIfExists('contratos');
     }
