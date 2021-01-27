@@ -84,8 +84,8 @@ class DatabaseSeeder extends Seeder
         	[
 
         	'persona_id' => '2',
-			'id_registro' => '2022',
-			'upline_id' => '1',
+			'id_registro' => '48114',
+			'upline_id' => '2021',
 			'fecha_registro' => '2020/11/2',
 			'bloque_id' => '1',
         	'created_at' => now()
@@ -111,6 +111,22 @@ class DatabaseSeeder extends Seeder
             [
 
             'primer_nombre' => 'Gladiangel',
+            'primer_apellido' => 'Meneses',
+            'pais' => 'Venezuela',
+            'created_at' => now()
+
+            ],
+            [
+
+            'primer_nombre' => 'Lisbeth',
+            'primer_apellido' => 'Espinoza',
+            'pais' => 'Venezuela',
+            'created_at' => now()
+
+            ],
+            [
+
+            'primer_nombre' => 'Angel',
             'primer_apellido' => 'Meneses',
             'pais' => 'Venezuela',
             'created_at' => now()

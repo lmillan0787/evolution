@@ -1,5 +1,6 @@
 @extends('layout.master')
 @section('content')
+<h3><center>Nueva Persona</center></h3>
 <form action="{{ route('personas.store') }}" method="post">
 	@csrf
 	 <div class="row">
@@ -11,7 +12,7 @@
  <label for="">País</label><br>
 <input type="text" name="pais" size="25"><br>
 
-<button type="submit">Enviar</button>
+<button type="submit" class="button primary-button">Enviar</button>
 
 
 <input type="button" class="button" onclick="history.back()"  name="volver atrás" value="Volver">

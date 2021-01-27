@@ -22,7 +22,7 @@
 		<td><a class="button button-primary" href="{{ route('personas.index') }}">Personas</a></td>
 		<td><a class="button button-primary" href="{{ route('participantes') }}">Forsage</a></td>
 		<td><a class="button button-primary" href="">Incomatrix</a></td>
-		<td><a class="button button-primary" href="" size="20">Trust Investing</a></td>
+		<td><a class="button button-primary" href="" >Trust Investing</a></td>
 	</tr>
            </div>	
 
@@ -38,9 +38,13 @@
     </body>
     <style type="text/css">
   
-a>button-primary {
- 
-  width: 120px;
+a {
+  /*font-size: 20px;*/
+  line-height: 50px;
+  text-align: center;
+  width: 150px;
+  height: 50px;
+}
   
 }
   

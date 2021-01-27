@@ -1,21 +1,24 @@
 @extends('layout.master')
 @section('content')
+<h3><center>Registro Socio</center></h3>
 <form action="{{ route('participantes/store') }}" method="post">
 	@csrf
-	<select name="persona" class="select2" id="">
-		@foreach ($participantes as $participa)
-		<option value="{{$participa->persona_id}}">{{$participa->primer_nombre}} {{$participa->primer_apellido}}</option>
+	
+	<label for="">Nuevo Socio</label>
+	<select name="persona_id" class="select2" id="">
+		@foreach ($personas as $persona)
+		<option value="{{$persona->id}}">{{$persona->primer_nombre}} {{$persona->primer_apellido}}</option>
 		@endforeach
 	</select>
- <label for="">Primer Nombre</label>
+ {{-- <label for="">Primer Nombre</label>
 <input type="text" name="primer_nombre"><br>
 
 <label for="">Primer Apellido</label>
 
-<input type="text" name="primer_apellido"><br>
+<input type="text" name="primer_apellido"><br> --}}
 
-<label for="">Pais</label>
-<input type="text" name='pais'><br>
+{{-- <label for="">Pais</label>
+<input type="text" name='pais'><br> --}}
 
 <!-- contrato id
 <input type="text" name="contrato_id"><br>
@@ -24,8 +27,11 @@
 <input type="text" name="id_registro"><br>
 
  <label for="">Upline Id</label>
-<input type="text" name="upline_id"><br>
-
+<select name="upline_id" class="select2" id="">
+		@foreach ($participantes as $participante)
+		<option value="{{$participante->id_registro}}">{{$participante->primer_nombre}} {{$participante->primer_apellido}} ({{$participante->id_registro}})</option>
+		@endforeach
+	</select>
  <label for="">Fecha de Registro</label>
 <input type="text" class="datepicker" name="fecha_registro"><br>
 

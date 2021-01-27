@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\ParticipanteForsage;
+
 
 class ParticipanteController extends Controller
 {
@@ -32,11 +34,12 @@ class ParticipanteController extends Controller
      */
     public function create()
     {
+        $personas = $this->consultaPersonas();
         $participantes = $this->consultaParticipantesForsage();
 
          //dd($participantes);
 
-       return view('participantes.create', compact('participantes'));
+       return view('participantes.create', compact('personas','participantes'));
     }
 
     /**
@@ -48,7 +51,7 @@ class ParticipanteController extends Controller
     public function store(Request $request)
     {
         $data = [ 
-        'contrato_id' => $request['contrato_id'],
+        'persona_id' => $request['persona_id'], 
         'id_registro' => $request['id_registro'],
         'id_registro' => $request['id_registro'],
         'upline_id' => $request['upline_id'],
@@ -58,7 +61,7 @@ class ParticipanteController extends Controller
     ];
     //dd($data);
 
-    DB::table('participantes')->insert($data);
+    DB::table('participantes_forsage')->insert($data);
 
     $participantes = $this->consultaParticipantesForsage();
     // $uplines = $this->consultarUpline();
@@ -75,7 +78,13 @@ class ParticipanteController extends Controller
      */
     public function show($id)
     {
-        //
+
+        $referidos = DB::table('participantes_forsage as pf' )->join('personas','pf.persona_id','=','personas.id')->where('upline_id',$id)->get();
+         $persona = DB::table('personas')->join('participantes_forsage as pf','personas.id','=','pf.persona_id')->where('id_registro',$id)->first();
+
+        //dd($referidos);
+
+        return view('participantes.show',compact('referidos','persona'));
     }
 
     /**
@@ -124,6 +133,13 @@ return $participantes;
 
       
 
+    }
+
+    public function consultaPersonas(){
+
+        $personas = DB::table('personas')->get();
+
+        return $personas;
     }
 
 

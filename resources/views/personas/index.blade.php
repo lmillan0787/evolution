@@ -1,5 +1,7 @@
 @extends('layout.master')
 @section('content')
+<h3><center>PERSONAS</center></h3>
+<a href="{{route('personas.create')}}"><button class="button-primary">Nuevo</button></a>
 <table  class="u-full-width">
 	<thead>
 		<tr>
@@ -19,7 +21,7 @@
 	</tbody>
 </table>
 
-<a href="{{route('personas.create')}}"><button class="button-primary">Nuevo</button></a>
+
 
 
 @endsection

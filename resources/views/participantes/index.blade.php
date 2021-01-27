@@ -1,9 +1,8 @@
 @extends('layout.master')
 @section('content')
 	<div class="row">
-		<div class="one column">
-			
-		</div>
+		<h3><center>FORSAGE</center></h3>
+		<a href="{{ route('participantes/create') }}" class="button button-primary">Nuevo</a>
 
 <table class="u-full-width">
 	<thead>
@@ -22,9 +21,11 @@
 		<td>{{$participante->primer_nombre}}</td>
 		<td>{{$participante->primer_apellido}}</td>
 		<td>{{$participante->upline_id}}</td>
+		<td><a href="{{route('participantes/show',$participante->id_registro)}}" class="button primary-button">Detalles</a></td>
 		@endforeach
 		
 		</tr>
+		
 		
 	</tbody>
 
