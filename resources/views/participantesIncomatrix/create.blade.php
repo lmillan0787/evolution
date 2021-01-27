@@ -1,8 +1,8 @@
 @extends('layout.master')
 @section('content')
-<h2>FORSAGE</h2>
+<h2>INCOMATRIX</h2>
 <h3><center>Registro Socio</center></h3>
-<form action="{{ route('participantes/store') }}" method="post">
+<form action="{{ route('participantesInco.store') }}" method="post">
 	@csrf
 	
 	<label for="">Nuevo Socio</label>

@@ -56,10 +56,10 @@ class CreateParticipantesTable extends Migration
  Schema::create('participantes_trust_investing', function (Blueprint $table) {
             $table->id();
            
-            $table->string('persona_id',10)->constrained('persona');
+            $table->integer('persona_id')->constrained('persona');
             // $table->foreignId('contrato_id')->constrained('contratos');
             $table->string('id_registro',10);
-            $table->string('upline_id', 10);
+            $table->string('upline_id', 10)->nullable();
             $table->date('fecha_registro');
             $table->foreignId('bloque_id')->constrained('bloques');
             $table->timestamps();

@@ -21,8 +21,8 @@
            	<tr> 
 		<td><a class="button button-primary" href="{{ route('personas.index') }}">Personas</a></td>
 		<td><a class="button button-primary" href="{{ route('participantes') }}">Forsage</a></td>
-		<td><a class="button button-primary" href="">Incomatrix</a></td>
-		<td><a class="button button-primary" href="" >Trust Investing</a></td>
+		<td><a class="button button-primary" href="{{ route('participantesInco.index') }}">Incomatrix</a></td>
+		<td><a class="button button-primary" href="{{ route('participantesTrust.index') }}" >Trust Investing</a></td>
 	</tr>
            </div>	
 
