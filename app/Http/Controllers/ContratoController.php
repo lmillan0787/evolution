@@ -14,7 +14,18 @@ class ContratoController extends Controller
      */
     public function index()
     {
-        $contratos = DB::table('contratos')->select('nombre')->get();
+        //$id = $request->id;
+        $contratos = DB::table('contratos')/*->select('nombre')->where('contratos.id',$request->id)*/->get();
+
+        // $cantidad = DB::table('participantes')->groupBy('contrato_id')->count();
+        // dd($cantidad);
+
+        // foreach ($cantidad as $c){
+
+            
+        // }
+
+
 
         return view('contratos.index', compact('contratos'));
 
@@ -27,7 +38,7 @@ class ContratoController extends Controller
      */
     public function create()
     {
-        //
+       return view('contratos.create');
     }
 
     /**
@@ -38,7 +49,20 @@ class ContratoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $data = [ 
+        'nombre' => $request['nombre'],
+        'cripto_opera' => $request['cripto_opera'],
+        
+        
+
+    ];
+    //dd($data);
+   
+    DB::table('contratos')->insert($data);
+
+
+     $contratos = DB::table('contratos')/*->select('nombre')->where('contratos.id',$request->id)*/->get();
+    return view('contratos.index',compact('contratos'));
     }
 
     /**

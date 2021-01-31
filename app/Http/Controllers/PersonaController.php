@@ -102,7 +102,7 @@ class PersonaController extends Controller
     public function consultaPersonas(){
 
 
-        $personas = DB::table('personas')->get();
+        $personas = DB::table('personas')/*->whereNotIn('id',array(1))*/->get();
 
         return $personas;
     }

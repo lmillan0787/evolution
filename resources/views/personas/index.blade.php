@@ -20,6 +20,7 @@
 		@endforeach
 	</tbody>
 </table>
+<input type="button" class="button" onclick="history.back()"  name="volver atrás" value="Volver">
 
 
 

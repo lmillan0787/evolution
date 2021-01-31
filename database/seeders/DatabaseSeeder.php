@@ -19,18 +19,21 @@ class DatabaseSeeder extends Seeder
         	[
 
         	'nombre' => 'Forsage',
+            'cripto_opera' => 'Ethereum',
         	'created_at' => now()
 
         	],
         	[
 
         	'nombre' => 'IncomeMatrix',
+            'cripto_opera' => 'Tron',
         	'created_at' => now()
 
         	],
         	[
 
-        	'nombre' => 'Otro',
+        	'nombre' => 'Trust Investing', 
+             'cripto_opera' => 'Thether USDT',
         	'created_at' => now()
 
         	]
@@ -75,6 +78,7 @@ class DatabaseSeeder extends Seeder
 
         	'persona_id' => '1',
 			'id_registro' => '2021',
+            'contrato_id' => '1',
 			'upline_id' => '0',
 			'fecha_registro' => '2020/06/05',
 			'bloque_id' => '1',
@@ -85,7 +89,8 @@ class DatabaseSeeder extends Seeder
 
         	'persona_id' => '2',
 			'id_registro' => '48114',
-			'upline_id' => '2021',
+			'contrato_id' => '1',
+            'upline_id' => '2021',
 			'fecha_registro' => '2020/11/2',
 			'bloque_id' => '1',
         	'created_at' => now()
@@ -96,7 +101,7 @@ class DatabaseSeeder extends Seeder
         ];
 
          foreach ($datos as $key) {
-            DB::table('participantes_forsage')->insert($key);
+            DB::table('participantes')->insert($key);
         }
 
         $datos = [

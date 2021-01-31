@@ -1,8 +1,8 @@
 @extends('layout.master')
 @section('content')
 	<div class="row">
-		<h3><center>FORSAGE</center></h3>
-		<a href="{{ route('participantes/create') }}" class="button button-primary">Nuevo</a>
+		<h3><center>{{ $nombre_contrato->nombre }} - {{ $nombre_contrato->cripto_opera }}</center></h3>
+		<a href="{{ route('participantes/create',$contrato_id) }}" class="button button-primary">Nuevo</a>
 
 <table class="u-full-width">
 	<thead>
@@ -30,6 +30,7 @@
 	</tbody>
 
 </table>
+<input type="button" class="button" onclick="history.back()"  name="volver atrás" value="Volver">
 
 
 	</div>

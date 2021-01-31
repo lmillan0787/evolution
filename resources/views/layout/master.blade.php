@@ -16,15 +16,19 @@
     </head>
     <body>
         @section('sidebar')
-           <div class='row'>
-           <div class="one column">
-           	<tr> 
-		<td><a class="button button-primary" href="{{ route('personas.index') }}">Personas</a></td>
-		<td><a class="button button-primary" href="{{ route('participantes') }}">Forsage</a></td>
-		<td><a class="button button-primary" href="{{ route('participantesInco.index') }}">Incomatrix</a></td>
-		<td><a class="button button-primary" href="{{ route('participantesTrust.index') }}" >Trust Investing</a></td>
-	</tr>
-           </div>	
+           <div class='row' align="center">
+           	<thead>
+              <tr> 
+                  <th><a class="button button-primary" href="{{ url('/') }}">Inicio</a></th>
+                  <th><a class="button button-primary" href="{{ route('personas.index') }}">Personas</a></th>
+    <th><a class="button button-primary" href="{{ route('contratos') }}">Contratos</a></th>
+    <th><img src="{{ asset('img/logo_evolution.png') }}" align="right" width="10%" height="10%" ></th>
+    
+              </tr>
+
+            </thead>
+	
+	
 
 	
 	

@@ -27,6 +27,8 @@
 <label for="">Id Registro</label>
 <input type="text" name="id_registro"><br>
 
+<input type="text" hidden="" name="contrato_id" value="2">
+
  <label for="">Upline Id</label>
 <select name="upline_id" class="select2" id="">
 		@foreach ($participantes as $participante)

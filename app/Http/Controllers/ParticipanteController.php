@@ -14,15 +14,20 @@ class ParticipanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($request)
     {
 
-        $participantes = $this->consultaParticipantesForsage();
-        //dd($participantes);
+        //$participantes = $this->consultaParticipantes();
+         //dd($request);
          // $uplines = $this->consultarUpline();
          //dd($uplines);
+        $contrato_id = $request;
+        $nombre_contrato = DB::table('contratos')->where('id',$contrato_id)->first();
+$participantes = DB::table('participantes as p')
+->join('personas','p.persona_id','=','personas.id')
+->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
         
-          return view('participantes.index', compact('participantes'));
+          return view('participantes.index', compact('participantes','contrato_id','nombre_contrato'));
 
 
     }
@@ -32,14 +37,23 @@ class ParticipanteController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        $personas = $this->consultaPersonas();
-        $participantes = $this->consultaParticipantesForsage();
+
+        //dd($request->id);
+        $contrato_id = $request->id;
+        $nombre_contrato = DB::table('contratos')->select('nombre')->where('id',$contrato_id)->first();
+        $personas = $this->consultaPersonas($contrato_id);
+
+        //$participantes = $this->consultaParticipantes();
+
+        $participantes = DB::table('participantes as p')
+->join('personas','p.persona_id','=','personas.id')
+->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
          //dd($participantes);
 
-       return view('participantes.create', compact('personas','participantes'));
+       return view('participantes.create', compact('personas','participantes', 'contrato_id','nombre_contrato'));
     }
 
     /**
@@ -52,7 +66,7 @@ class ParticipanteController extends Controller
     {
         $data = [ 
         'persona_id' => $request['persona_id'], 
-        'id_registro' => $request['id_registro'],
+        'contrato_id' => $request['contrato_id'],
         'id_registro' => $request['id_registro'],
         'upline_id' => $request['upline_id'],
         'fecha_registro' => $request['fecha_registro'],
@@ -61,12 +75,17 @@ class ParticipanteController extends Controller
     ];
     //dd($data);
 
-    DB::table('participantes_forsage')->insert($data);
+    DB::table('participantes')->insert($data);
 
-    $participantes = $this->consultaParticipantesForsage();
+    //$participantes = $this->consultaParticipantes();
     // $uplines = $this->consultarUpline();
+    $contrato_id = $request->contrato_id;
+        $nombre_contrato = DB::table('contratos')->where('id',$contrato_id)->first();
+     $participantes = DB::table('participantes as p')
+->join('personas','p.persona_id','=','personas.id')
+->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
-    return view('participantes.index', compact('participantes'));
+    return view('participantes.index', compact('participantes','contrato_id','nombre_contrato'));
 
     }
 
@@ -79,10 +98,10 @@ class ParticipanteController extends Controller
     public function show($id)
     {
 
-        $referidos = DB::table('participantes_forsage as pf' )->join('personas','pf.persona_id','=','personas.id')->where('upline_id',$id)->get();
-         $persona = DB::table('personas')->join('participantes_forsage as pf','personas.id','=','pf.persona_id')->where('id_registro',$id)->first();
+        $referidos = DB::table('participantes as p' )->join('personas','p.persona_id','=','personas.id')->where('upline_id',$id)->get();
+         $persona = DB::table('personas')->join('participantes as p','personas.id','=','p.persona_id')->where('id_registro',$id)->first();
 
-        //dd($referidos);
+        //dd($persona);
 
         return view('participantes.show',compact('referidos','persona'));
     }
@@ -122,12 +141,12 @@ class ParticipanteController extends Controller
     }
 
 
-    public function consultaParticipantesForsage(){
+    public function consultaParticipantes($request){
 
-
-$participantes = DB::table('participantes_forsage as pf')
-->join('personas','pf.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','pf.id_registro','pf.upline_id','personas.id as id_per')->get();
+$contrato_id = $request->contrato_id;
+$participantes = DB::table('participantes as p')
+->join('personas','p.persona_id','=','personas.id')
+->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
 return $participantes;
 

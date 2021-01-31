@@ -1,6 +1,6 @@
 @extends('layout.master')
 @section('content')
-<h2>FORSAGE</h2>
+<h2>{{ $nombre_contrato->nombre }}</h2>
 <h3><center>Registro Socio</center></h3>
 <form action="{{ route('participantes/store') }}" method="post">
 	@csrf
@@ -27,8 +27,11 @@
 <label for="">Id Registro</label>
 <input type="text" name="id_registro"><br>
 
+<input type="text" hidden=""  name="contrato_id" value="{{ $contrato_id }}">
+
  <label for="">Upline Id</label>
 <select name="upline_id" class="select2" id="">
+	<option value="1">Upline Global(0)</option>
 		@foreach ($participantes as $participante)
 		<option value="{{$participante->id_registro}}">{{$participante->primer_nombre}} {{$participante->primer_apellido}} ({{$participante->id_registro}})</option>
 		@endforeach

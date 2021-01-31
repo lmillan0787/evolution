@@ -22,6 +22,7 @@ class CreateParticipantesTable extends Migration
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',30);
+            $table->string('cripto_opera',30);
             $table->timestamps();
         });
         Schema::create('personas', function (Blueprint $table) {
@@ -31,11 +32,11 @@ class CreateParticipantesTable extends Migration
             $table->string('pais', 30);
             $table->timestamps();
         });
- Schema::create('participantes_forsage', function (Blueprint $table) {
+ Schema::create('participantes', function (Blueprint $table) {
             $table->id();
            
             $table->integer('persona_id')->constrained('persona');
-            // $table->foreignId('contrato_id')->constrained('contratos');
+            $table->foreignId('contrato_id')->constrained('contratos');
             $table->string('id_registro',10);
             $table->string('upline_id', 10);
             $table->date('fecha_registro');
