@@ -16,6 +16,8 @@ class ContratoController extends Controller
     {
         //$id = $request->id;
         $contratos = DB::table('contratos')/*->select('nombre')->where('contratos.id',$request->id)*/->get();
+        //$contratosCuenta = DB::table('participantes as par')->join('contratos', 'par.contrato_id','=','contratos.id')->where('contratos.id',[1,2,3])->count();
+        //dd($contratosCuenta);
 
         // $cantidad = DB::table('participantes')->groupBy('contrato_id')->count();
         // dd($cantidad);

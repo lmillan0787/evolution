@@ -1,57 +1,84 @@
 @extends('layout.master')
 @section('content')
-<h2>{{ $nombre_contrato->nombre }}</h2>
+<h2 align="center">{{ $contrato->nombre }}</h2>
 <h3><center>Registro Socio</center></h3>
 <form action="{{ route('participantes/store') }}" method="post">
 	@csrf
 	
-	<label for="">Nuevo Socio</label>
-	<select name="persona_id" class="select2" id="">
-		@foreach ($personas as $persona)
-		<option value="{{$persona->id}}">{{$persona->primer_nombre}} {{$persona->primer_apellido}}</option>
-		@endforeach
-	</select>
- {{-- <label for="">Primer Nombre</label>
-<input type="text" name="primer_nombre"><br>
-
-<label for="">Primer Apellido</label>
-
-<input type="text" name="primer_apellido"><br> --}}
-
-{{-- <label for="">Pais</label>
-<input type="text" name='pais'><br> --}}
-
-<!-- contrato id
-<input type="text" name="contrato_id"><br>
- -->
-<label for="">Id Registro</label>
-<input type="text" name="id_registro"><br>
-
-<input type="text" hidden=""  name="contrato_id" value="{{ $contrato_id }}">
-
- <label for="">Upline Id</label>
-<select name="upline_id" class="select2" id="">
-	<option value="1">Upline Global(0)</option>
-		@foreach ($participantes as $participante)
-		<option value="{{$participante->id_registro}}">{{$participante->primer_nombre}} {{$participante->primer_apellido}} ({{$participante->id_registro}})</option>
-		@endforeach
-	</select>
- <label for="">Fecha de Registro</label>
-<input type="text" class="datepicker" name="fecha_registro"><br>
-
- <label for="">Bloque</label>
-<input type="text" name="bloque_id"><br>
-
-<button type="submit" class="button-primary">Enviar</button>
+	<label for="" align="center">Nuevo Socio</label>
 	
-
-
-
+	<div class="row" align="center">
+		<div class="twelve columns">
+			
+			<select name="persona_id" class="select2" id="" class="u-full-width">
+				@foreach ($personas as $persona)
+				<option value="{{$persona->id}}">{{$persona->primer_nombre}} {{$persona->primer_apellido}}</option>
+				@endforeach
+			</select>
+		</div>
+	</div><br>
+	
+	
+	<div class="row" align="center">
+		<div class=" twelve columns">
+			<label for="">Id Registro</label>
+			<input u-full-width type="text" name="id_registro"><br>
+			<input type="text" hidden=""  name="contrato_id" value="{{ $contrato->id }}">
+		</div>
+	</div><br>
+	<div class="row" align="center">
+		<div class="twelve columns">
+			
+			<label for="">Upline Id</label>
+			<select name="upline_id" class="select2" id="">
+				<option value="1">Upline Global(0)</option>
+				@foreach ($participantes as $participante)
+				<option value="{{$participante->id_registro}}">{{$participante->primer_nombre}} {{$participante->primer_apellido}} ({{$participante->id_registro}})</option>
+				@endforeach
+			</select>
+		</div>
+	</div><br>
+	
+	
+	<div class="row" align="center">
+		<div class="twelve columns">
+			<label for="">Fecha de Registro</label>
+			<input type="text" class="datepicker" name="fecha_registro"><br>
+		</div>
+	</div><br>
+	<div class="row" align="center">
+		<div class="twelve columns">
+			<label for="">Bloque</label>
+			
+			<select name="bloque_id" class="select2" class="u-full-width">
+				@foreach ($bloques as $bloque)
+				<option value="{{ $bloque->id }}">{{ $bloque->nro }}</option>
+				
+				@endforeach
+			</select>
+		</div>
+	</div><br>
+	
+	<div class="row" align="center">
+		<div class="twelve columns">
+			<label for="">Línea</label>
+			<select name="linea_id" class="select2" class="u-full-width">
+				@foreach ($lineas as $linea)
+				<option value="{{ $linea->id }}">{{ $linea->nro }}</option>
+				
+				@endforeach
+			</select>
+		</div>
+	</div><br>
+	<div class="row" align="center">
+		<div class= "twelve columns">
+			<button type="submit" class="button-primary">Enviar</button>
+		</div>
+	</div>
 </form>
 <script>
 $(document).ready(function() {
-    $('.select2').select2();
+$('.select2').select2();
 });
 </script>
 @endsection
-

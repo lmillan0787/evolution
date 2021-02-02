@@ -73,6 +73,33 @@ class DatabaseSeeder extends Seeder
             DB::table('bloques')->insert($key);
         }
 
+         $datos = [
+            [
+
+            'nro' => '1',
+            'created_at' => now()
+
+            ],
+            [
+
+            'nro' => '2',
+            'created_at' => now()
+
+            ],
+            [
+
+            'nro' => '3',
+            'created_at' => now()
+
+            ]
+            
+
+        ];
+
+         foreach ($datos as $key) {
+            DB::table('lineas')->insert($key);
+        }
+
           $datos = [
         	[
 
@@ -82,6 +109,7 @@ class DatabaseSeeder extends Seeder
 			'upline_id' => '0',
 			'fecha_registro' => '2020/06/05',
 			'bloque_id' => '1',
+            'linea_id' => '1',
         	'created_at' => now()
 
         	],
@@ -93,6 +121,7 @@ class DatabaseSeeder extends Seeder
             'upline_id' => '2021',
 			'fecha_registro' => '2020/11/2',
 			'bloque_id' => '1',
+             'linea_id' => '2',
         	'created_at' => now()
 
         	]

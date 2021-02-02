@@ -17,17 +17,22 @@ class ParticipanteController extends Controller
     public function index($request)
     {
 
-        //$participantes = $this->consultaParticipantes();
+        
          //dd($request);
          // $uplines = $this->consultarUpline();
          //dd($uplines);
-        $contrato_id = $request;
-        $nombre_contrato = DB::table('contratos')->where('id',$contrato_id)->first();
-$participantes = DB::table('participantes as p')
-->join('personas','p.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
+        //$contrato_id = $request;
+        $contrato = DB::table('contratos')->where('id',$request)->first();
+
+        //dd($contrato);
+
+$participantes = $this->consultaParticipantes($request);
+
+// $participantes = DB::table('participantes as p')
+// ->join('personas','p.persona_id','=','personas.id')
+// ->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
         
-          return view('participantes.index', compact('participantes','contrato_id','nombre_contrato'));
+          return view('participantes.index', compact('participantes','contrato'));
 
 
     }
@@ -41,19 +46,22 @@ $participantes = DB::table('participantes as p')
     {
 
         //dd($request->id);
-        $contrato_id = $request->id;
-        $nombre_contrato = DB::table('contratos')->select('nombre')->where('id',$contrato_id)->first();
-        $personas = $this->consultaPersonas($contrato_id);
+        //$contrato_id = $request->id;
+        $contrato = DB::table('contratos')->where('id',$request->id)->first();
+        $personas = $this->consultaPersonas();
 
-        //$participantes = $this->consultaParticipantes();
+        $participantes = $this->consultaParticipantes($request->id);
 
-        $participantes = DB::table('participantes as p')
-->join('personas','p.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
+//         $participantes = DB::table('participantes as p')
+// ->join('personas','p.persona_id','=','personas.id')
+// ->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
-         //dd($participantes);
+         $bloques = DB::table('bloques')->get();
+         $lineas = DB::table('lineas')->get();
 
-       return view('participantes.create', compact('personas','participantes', 'contrato_id','nombre_contrato'));
+         //dd($contrato);
+
+       return view('participantes.create', compact('personas','participantes', 'contrato','bloques','lineas'));
     }
 
     /**
@@ -71,21 +79,22 @@ $participantes = DB::table('participantes as p')
         'upline_id' => $request['upline_id'],
         'fecha_registro' => $request['fecha_registro'],
         'bloque_id' => $request['bloque_id'],
+        'linea_id' => $request['linea_id'],
 
     ];
     //dd($data);
 
     DB::table('participantes')->insert($data);
 
-    //$participantes = $this->consultaParticipantes();
+    $participantes = $this->consultaParticipantes($request->contrato_id);
     // $uplines = $this->consultarUpline();
-    $contrato_id = $request->contrato_id;
-        $nombre_contrato = DB::table('contratos')->where('id',$contrato_id)->first();
-     $participantes = DB::table('participantes as p')
-->join('personas','p.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
+    //$contrato_id = $request->contrato_id;
+        $contrato = DB::table('contratos')->where('id',$request->contrato_id)->first();
+//      $participantes = DB::table('participantes as p')
+// ->join('personas','p.persona_id','=','personas.id')
+// ->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
-    return view('participantes.index', compact('participantes','contrato_id','nombre_contrato'));
+    return view('participantes.index', compact('participantes','contrato'));
 
     }
 
@@ -100,6 +109,8 @@ $participantes = DB::table('participantes as p')
 
         $referidos = DB::table('participantes as p' )->join('personas','p.persona_id','=','personas.id')->where('upline_id',$id)->get();
          $persona = DB::table('personas')->join('participantes as p','personas.id','=','p.persona_id')->where('id_registro',$id)->first();
+
+         
 
         //dd($persona);
 
@@ -141,12 +152,12 @@ $participantes = DB::table('participantes as p')
     }
 
 
-    public function consultaParticipantes($request){
+    public function consultaParticipantes($dato){
 
-$contrato_id = $request->contrato_id;
+//$contrato_id = $request->contrato_id;
 $participantes = DB::table('participantes as p')
 ->join('personas','p.persona_id','=','personas.id')
-->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
+->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per','bloque_id','linea_id')->where('contrato_id',$dato)->get();
 
 return $participantes;
 

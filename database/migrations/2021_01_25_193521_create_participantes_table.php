@@ -19,6 +19,12 @@ class CreateParticipantesTable extends Migration
             $table->timestamps();
         });
 
+        Schema::create('lineas', function (Blueprint $table) {
+            $table->id();
+            $table->string('nro',4);
+            $table->timestamps();
+        });
+
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
             $table->string('nombre',30);
@@ -41,6 +47,7 @@ class CreateParticipantesTable extends Migration
             $table->string('upline_id', 10);
             $table->date('fecha_registro');
             $table->foreignId('bloque_id')->constrained('bloques');
+            $table->foreignId('linea_id')->constrained('lineas');
             $table->timestamps();
         });
  Schema::create('participantes_incomatrix', function (Blueprint $table) {

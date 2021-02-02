@@ -9,6 +9,8 @@
 		<!-- <th>Nombre Contrato</th> -->
 		<th>Nombre</th>
 		<th>Apellido</th>
+		<th>Bloque</th>
+		<th>Linea</th>
 		{{-- <th>Upline</th> --}}
 		</tr>
 	</thead>
@@ -18,6 +20,8 @@
 		<td>{{$referido->id_registro}}</td>
 		<td>{{$referido->primer_nombre}}</td>
 		<td>{{$referido->primer_apellido}}</td>
+		<td>{{$referido->bloque_id}}</td>
+		<td>{{$referido->linea_id}}</td>
 		
 @endforeach
 		
