@@ -14,7 +14,7 @@
 @foreach($bloques as $bloque)
 
 <tr>
-	<td><a href="{{route('bloques.show',$bloque->id)}}">{{$bloque->nro}}</a>	</td>
+	<td><a href="{{route('bloques/show',$bloque->nro)}}">{{$bloque->nro}}</a></td>
 </tr>
 
 @endforeach

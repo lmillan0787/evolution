@@ -78,7 +78,13 @@ class BloqueController extends Controller
      */
     public function show($id)
     {
-        //
+
+        //dd($id);
+        $participanteBloque = DB::table('bloques')->join('participantes','bloques.nro','=','participantes.bloque_id')->join('personas','participantes.persona_id','=','personas.id')->where('nro',$id)->get();
+
+        dd($participanteBloque);
+
+        return view('bloques.show',compact('participanteBloque'));
     }
 
     /**
