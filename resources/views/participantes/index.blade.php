@@ -2,7 +2,15 @@
 @section('content')
 	<div class="row">
 		<h3><center>{{ $contrato->nombre }} - {{ $contrato->cripto_opera }}</center></h3>
-		<a href="{{ route('participantes/create',$contrato->id) }}" class="button button-primary">Nuevo</a>
+		
+<div class="row">
+	<a href="{{ route('participantes/create',$contrato->id) }}" class="button button-primary">Nuevo</a>
+		<a href="{{ route('bloques',$contrato->id) }}" class="button button-primary">Bloques</a>
+<a href="{{ route('lineas',$contrato->id) }}" class="button button-primary">Líneas</a>
+
+
+</div>
+		
 
 <table class="u-full-width">
 	<thead>

@@ -30,6 +30,16 @@ Route::post('participantes/store', ['as' => 'participantes/store', 'uses' => 'Ap
 Route::get('participantes/show/{id}', ['as' => 'participantes/show', 'uses' => 'App\Http\Controllers\ParticipanteController@show']);
 Route::resource('/personas', App\Http\Controllers\PersonaController::class);
 Route::resource('/participantesInco', App\Http\Controllers\ParticipanteIncomatrixController::class);
-Route::resource('/participantesTrust', App\Http\Controllers\ParticipanteTrustController::class);
+Route::get('/bloques/{id}', ['as' => 'bloques', 'uses' => 'App\Http\Controllers\BloqueController@index']);
+Route::get('/bloques/create/{id}', ['as' => 'bloques/create', 'uses' => 'App\Http\Controllers\BloqueController@create']);
+Route::resource('/bloques', App\Http\Controllers\BloqueController::class);
+
+
+Route::get('/lineas/{id}', ['as' => 'lineas', 'uses' => 'App\Http\Controllers\LineaController@index']);
+Route::get('/lineas/create/{id}', ['as' => 'lineas/create', 'uses' => 'App\Http\Controllers\LineaController@create']);
+
+
+Route::resource('/lineas', App\Http\Controllers\LineaController::class);
+
 
 		

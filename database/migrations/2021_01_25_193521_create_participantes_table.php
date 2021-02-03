@@ -13,17 +13,6 @@ class CreateParticipantesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bloques', function (Blueprint $table) {
-            $table->id();
-            $table->string('nro',4);
-            $table->timestamps();
-        });
-
-        Schema::create('lineas', function (Blueprint $table) {
-            $table->id();
-            $table->string('nro',4);
-            $table->timestamps();
-        });
 
         Schema::create('contratos', function (Blueprint $table) {
             $table->id();
@@ -31,6 +20,22 @@ class CreateParticipantesTable extends Migration
             $table->string('cripto_opera',30);
             $table->timestamps();
         });
+
+        Schema::create('bloques', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('nro',4);
+            $table->timestamps();
+        });
+
+        Schema::create('lineas', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('contrato_id')->constrained('contratos');
+            $table->string('nro',4);
+            $table->timestamps();
+        });
+
+        
         Schema::create('personas', function (Blueprint $table) {
             $table->id();
             $table->string('primer_nombre', 20);
@@ -50,28 +55,7 @@ class CreateParticipantesTable extends Migration
             $table->foreignId('linea_id')->constrained('lineas');
             $table->timestamps();
         });
- Schema::create('participantes_incomatrix', function (Blueprint $table) {
-            $table->id();
-           
-            $table->integer('persona_id')->constrained('persona');
-            // $table->foreignId('contrato_id')->constrained('contratos');
-            $table->string('id_registro',10);
-            $table->integer('upline_id');
-            $table->date('fecha_registro');
-            $table->foreignId('bloque_id')->constrained('bloques');
-            $table->timestamps();
-        });
- Schema::create('participantes_trust_investing', function (Blueprint $table) {
-            $table->id();
-           
-            $table->integer('persona_id')->constrained('persona');
-            // $table->foreignId('contrato_id')->constrained('contratos');
-            $table->string('id_registro',10);
-            $table->string('upline_id', 10)->nullable();
-            $table->date('fecha_registro');
-            $table->foreignId('bloque_id')->constrained('bloques');
-            $table->timestamps();
-        });
+ 
     }
 
     /**

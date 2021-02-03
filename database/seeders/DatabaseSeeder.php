@@ -50,21 +50,31 @@ class DatabaseSeeder extends Seeder
         	[
 
         	'nro' => '1',
+            'contrato_id' => '1',
         	'created_at' => now()
 
         	],
         	[
 
         	'nro' => '2',
+            'contrato_id' => '1',
         	'created_at' => now()
 
         	],
         	[
 
-        	'nro' => '3',
+        	'nro' => '1',
+            'contrato_id' => '2',
         	'created_at' => now()
 
-        	]
+        	],
+            [
+
+            'nro' => '1',
+            'contrato_id' => '3',
+            'created_at' => now()
+
+            ]
         	
 
         ];
@@ -73,22 +83,32 @@ class DatabaseSeeder extends Seeder
             DB::table('bloques')->insert($key);
         }
 
-         $datos = [
+           $datos = [
             [
 
             'nro' => '1',
+            'contrato_id' => '1',
             'created_at' => now()
 
             ],
             [
 
             'nro' => '2',
+            'contrato_id' => '1',
             'created_at' => now()
 
             ],
             [
 
-            'nro' => '3',
+            'nro' => '1',
+            'contrato_id' => '2',
+            'created_at' => now()
+
+            ],
+            [
+
+            'nro' => '1',
+            'contrato_id' => '3',
             'created_at' => now()
 
             ]
