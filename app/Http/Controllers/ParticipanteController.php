@@ -56,8 +56,8 @@ $participantes = $this->consultaParticipantes($request);
 // ->join('personas','p.persona_id','=','personas.id')
 // ->select('personas.primer_nombre','personas.primer_apellido','p.id_registro','p.upline_id','personas.id as id_per')->where('contrato_id',$contrato_id)->get();
 
-         $bloques = DB::table('bloques')->get();
-         $lineas = DB::table('lineas')->get();
+         $bloques = DB::table('bloques')->where('contrato_id',$contrato->id)->get();
+         $lineas = DB::table('lineas')->where('contrato_id',$contrato->id)->get();
 
          //dd($contrato);
 

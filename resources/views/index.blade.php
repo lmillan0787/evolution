@@ -1,4 +1,5 @@
 @extends('layout.master')
+@section('title','Inicio')
 @section('content')
-<h3 align="center">Bienvenidos a Evolution System </h3>
+<h1 style="margin-top: -15%" ><center>Bienvenidos a Evolution System </center></h1>
 @endsection

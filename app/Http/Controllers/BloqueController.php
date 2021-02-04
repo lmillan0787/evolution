@@ -80,11 +80,15 @@ class BloqueController extends Controller
     {
 
         //dd($id);
-        $participanteBloque = DB::table('bloques')->join('participantes','bloques.nro','=','participantes.bloque_id')->join('personas','participantes.persona_id','=','personas.id')->where('nro',$id)->get();
+        // $participanteBloque = DB::table('bloques')->join('participantes','bloques.nro','=','participantes.bloque_id')->join('personas','participantes.persona_id','=','personas.id')->where('nro',$id)->get();
 
-        dd($participanteBloque);
+         $participantesBloques = DB::table('participantes as par')->join('personas as per','par.persona_id','=','per.id')->where('bloque_id',$id)->get();
 
-        return view('bloques.show',compact('participanteBloque'));
+         $bloque = $id;
+
+        //dd($participanteBloque);
+
+        return view('bloques.show',compact('participantesBloques','bloque'));
     }
 
     /**

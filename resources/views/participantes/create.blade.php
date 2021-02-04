@@ -43,7 +43,7 @@
 	<div class="row" align="center">
 		<div class="twelve columns">
 			<label for="">Fecha de Registro</label>
-			<input type="text" class="datepicker" name="fecha_registro"><br>
+			<input type="date" class="form-control input-lg" name="fecha_registro"><br>
 		</div>
 	</div><br>
 	<div class="row" align="center">
